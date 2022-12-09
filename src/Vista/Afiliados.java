@@ -10,6 +10,10 @@ public class Afiliados extends JFrame {
     private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado;
     public JTextField nombre0,apellido0,cedula0,fechaSalida0,fechaIngreso0,hpra0,idAfiliado0;
 
+    public JTable tablaAfiliados;
+
+
+
 
     private void initGUI1() {
         pDatos = new JPanel(new GridLayout(4,2));
@@ -43,6 +47,13 @@ public class Afiliados extends JFrame {
         pDatos.add(idAfiliado0);
         pDatos.setBackground(Color.getHSBColor(178,57,100));
         add(pDatos,BorderLayout.NORTH);
+
+       // tablaAfiliados = new JTable();
+
+
+
+
+
 
         crud1 = new JPanel();
         agregar1 = new JButton("Agregar");
