@@ -14,7 +14,6 @@ public class Afiliados extends JFrame {
 
     public JTable tablaAfiliados;
     public JDateChooser fechaIngreso0,fechaSalida0;
-    public JTimeChooser hora;
 
 
 
