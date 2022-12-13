@@ -10,10 +10,10 @@ public class Afiliados extends JFrame {
     public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1;
     public JPanel  crud1 ,pDatos ;
     private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado;
-    public JTextField nombre0,apellido0,cedula0,hpra0,idAfiliado0;
+    public JTextField nombre0,apellido0,cedula0,idAfiliado0;
 
     public JTable tablaAfiliados;
-    public JDateChooser fechaIngreso0,fechaSalida0;
+    public JDateChooser fechaIngreso0,fechaSalida0,hpra0;
 
 
 
@@ -27,11 +27,11 @@ public class Afiliados extends JFrame {
         cedula = new JLabel("Cedula del Afiliado:");
         cedula0 = new JTextField(12);
         fechaSalida = new JLabel(" Fecha de Salida:");
-        fechaSalida0 = new JDateChooser();
+        fechaSalida0 = new JDateChooser("dd/MM/yyyy","HH:mm:ss",'_');
         fechaIngreso = new JLabel("Fecha de Ingreso:");
-        fechaIngreso0 = new JDateChooser();
+        fechaIngreso0 = new JDateChooser("dd/MM/yyyy","#######",'_');
         hpra = new JLabel("Hora:");
-        hpra0 = new JTextField(12);
+        hpra0 = new JDateChooser("HH:mm","#######",'_');
         idAfiliado = new JLabel("Id Afiliado:");
         idAfiliado0 = new JTextField(12);
         pDatos.add(nombre);
