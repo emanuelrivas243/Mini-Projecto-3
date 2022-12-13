@@ -1,5 +1,7 @@
 package Vista;
 
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,7 +9,8 @@ public class Citas  extends JFrame {
     public  JButton  agregar5, actulizar5, eliminar5, listar5,guardar5,atras5;
     public JPanel  crud5,pDatos5;
     private JLabel nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
-    public JTextField nombreCinco,apellidoCinco,cedulaCinco,servicionMedicoCinco,medicoCinco,fechaSalidaCinco,fechaIngresoCinco,hpraCinco,consultaorioCinco;
+    public JTextField nombreCinco,apellidoCinco,cedulaCinco,servicionMedicoCinco,medicoCinco,hpraCinco,consultaorioCinco;
+    public JDateChooser fechaSalidaCinco,fechaIngresoCinco;
     public Citas()  {
         initGUI5();
         pDatos5 = new JPanel(new GridLayout(5,2));
@@ -22,9 +25,9 @@ public class Citas  extends JFrame {
         medico5 = new JLabel("Nombre del Medico:");
         medicoCinco = new JTextField(12);
         fechaSalida5 = new JLabel(" Fecha de Salida:");
-        fechaSalidaCinco = new JTextField(12);
+        fechaSalidaCinco = new JDateChooser();
         fechaIngreso5 = new JLabel("Fecha de Ingreso:");
-        fechaIngresoCinco = new JTextField(12);
+        fechaIngresoCinco = new JDateChooser();
         hpra5 = new JLabel("Hora:");
         hpraCinco = new JTextField(12);
         consultaorio5 = new JLabel("Consultorio o Laboratorio:");
