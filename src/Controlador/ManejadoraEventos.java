@@ -146,5 +146,26 @@ public class ManejadoraEventos implements ActionListener {
             serv.setVisible(false);
             cit.setVisible(false);
        }
+
+       else if (e.getSource().equals(afi.agregar1)){
+           String []infoafi = new String [7];
+            infoafi[0]= afi.nombre0.getText();
+            infoafi[1]=afi.apellido0.getText();
+            infoafi[2]=afi.cedula0.getText();
+            infoafi[3]=afi.fechaSalida0.getDate().toString();
+            infoafi[4]=afi.fechaIngreso0.getDate().toString();
+            infoafi[5]=afi.hpra0.getText();
+            infoafi[6]=afi.idAfiliado0.getText();
+            afi.Modelo.addRow(infoafi);
+
+            afi.nombre0.setText("");
+            afi.apellido0.setText("");
+            afi.cedula0.setText("");
+            afi.fechaSalida0.setDate(null);
+            afi.fechaIngreso0.setDate(null);
+            afi.hpra0.setText("");
+            afi.idAfiliado0.setText("");
+
+        }
     }
 }

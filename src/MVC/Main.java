@@ -15,6 +15,6 @@ public class Main {
         Servicios serv = new Servicios();
         Citas cit = new Citas();
         ManejadoraEventos ma = new ManejadoraEventos(pri,afi,consul,med,serv, cit);
-
+// hola
     }
 }

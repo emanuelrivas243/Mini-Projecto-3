@@ -3,18 +3,24 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Afiliados extends JFrame {
 
     public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1;
-    public JPanel  crud1 ,pDatos ;
+    public JPanel  crud1 ,pDatos ,t;
     private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado;
-    public JTextField nombre0,apellido0,cedula0,idAfiliado0;
+    public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0;
 
-    public JTable tablaAfiliados;
-    public JDateChooser fechaIngreso0,fechaSalida0,hpra0;
 
+
+
+    public JDateChooser fechaIngreso0,fechaSalida0;
+
+    public DefaultTableModel Modelo;
+    public JTable tabla;
+    private  String [] columna ;
 
 
 
@@ -27,11 +33,12 @@ public class Afiliados extends JFrame {
         cedula = new JLabel("Cedula del Afiliado:");
         cedula0 = new JTextField(12);
         fechaSalida = new JLabel(" Fecha de Salida:");
-        fechaSalida0 = new JDateChooser("dd/MM/yyyy","HH:mm:ss",'_');
+        fechaSalida0 = new JDateChooser("dd/MM/yyyy","#######",'_');
+        fechaSalida0.setDateFormatString("yyyy-MM-dd");
         fechaIngreso = new JLabel("Fecha de Ingreso:");
         fechaIngreso0 = new JDateChooser("dd/MM/yyyy","#######",'_');
-        hpra = new JLabel("Hora:");
-        hpra0 = new JDateChooser("HH:mm","#######",'_');
+        hpra = new JLabel("Hora de ingreso:");
+        hpra0 = new JTextField(12);
         idAfiliado = new JLabel("Id Afiliado:");
         idAfiliado0 = new JTextField(12);
         pDatos.add(nombre);
@@ -51,7 +58,23 @@ public class Afiliados extends JFrame {
         pDatos.setBackground(Color.getHSBColor(178,57,100));
         add(pDatos,BorderLayout.NORTH);
 
-       // tablaAfiliados = new JTable();
+        t = new JPanel();
+        String[] columna = new String[7];
+        columna[0]="Nombre del Afiliado";
+        columna[1]= "Apellido del Afiliado";
+        columna[2]=  "Cedula del Afiliado";
+        columna[3]="Fecha de Salida";
+        columna[4]= "Fecha de Ingreso";
+        columna[5]="Hora de Ingreso";
+        columna[6]="Id Afiliado";
+        Modelo = new DefaultTableModel(columna,0);
+        tabla = new JTable(Modelo);
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        scrollPane.setPreferredSize(new Dimension(1100, 500));
+        t.add(scrollPane);
+        tabla.setBackground(Color.getHSBColor(178,57,100));
+        t.setBackground(Color.getHSBColor(178,57,100));
+        add(t,BorderLayout.CENTER);
 
 
 
