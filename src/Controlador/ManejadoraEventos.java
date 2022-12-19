@@ -94,6 +94,10 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.cit.eliminar55.addActionListener(this);
         this.cit.guardar5.addActionListener(this);
         this.cit.atras5.addActionListener(this);
+        this.cit.afiliado.addActionListener(this);
+        this.cit.especialista.addActionListener(this);
+        this.cit.servicios.addActionListener(this);
+        this.cit.consultorio.addActionListener(this);
         this.cit.nombreCinco.addKeyListener(this);
         this.cit.apellidoCinco.addKeyListener(this);
         this.cit.cedulaCinco.addKeyListener(this);
@@ -200,18 +204,25 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         }
 
        else if (e.getSource().equals(afi.agregar1)){
-           try{
-           if(afi.nombre0.getText().isEmpty()||afi.apellido0.getText().isEmpty()||
-            afi.cedula0.getText().isEmpty()||afi.idAfiliado0.getText().isEmpty()
-                   ||afi.fechaSalida0.getDate().toString().isEmpty() ||afi.fechaIngreso0.getDate().toString().isEmpty()
-           ) {
-               JOptionPane.showMessageDialog(null, "llene los campus vacios");
-           } else{
-               afi1.Agregar();
-               JOptionPane.showMessageDialog(null, "revise los campos y luego oprima Actualizar para ingrezar nuevos datos");
-           } }catch (Exception E){
-               JOptionPane.showMessageDialog(null, "llene los campos de fecha de Ingreso y fecha de salida");
-           }
+
+
+                try {
+                    if (afi.nombre0.getText().isEmpty() || afi.apellido0.getText().isEmpty() ||
+                            afi.cedula0.getText().isEmpty() || afi.idAfiliado0.getText().isEmpty()
+                            || afi.fechaSalida0.getDate().toString().isEmpty() || afi.fechaIngreso0.getDate().toString().isEmpty()
+                    ) {
+                        JOptionPane.showMessageDialog(null, "llene los campus vacios");
+                    } else {
+
+                        afi1.Agregar();
+                        JOptionPane.showMessageDialog(null, "revise los campos y luego oprima Actualizar para ingrezar nuevos datos");
+                    }
+                } catch (Exception E) {
+                    JOptionPane.showMessageDialog(null, "llene los campos de fecha de Ingreso y fecha de salida");
+                }
+
+
+
        }
 
        else if (e.getSource().equals(afi.eliminar1)){
@@ -360,6 +371,42 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
                 med.cedulatres.setText("");
                 med.servicionMedicotres.setText("");
                 med.medicotres.setText("");
+
+
+
+
+            }else {
+                JOptionPane.showMessageDialog(null, "Selecionarfilas");
+            }
+        }
+
+        int l =afi.tabla.getSelectedRow();
+
+        String[] infoafi3 = new String[9];
+        if(e.getSource().equals(afi.actulizar1)){
+
+            if(l>=0) {
+                afi.Modelo.setValueAt(afi.nombre0.getText(), l, 0);
+                afi.nombre0.setText(afi.tabla.getValueAt(l,0).toString());
+                afi.Modelo.setValueAt(afi.apellido0.getText(), l, 1);
+                afi.apellido0.setText(afi.tabla.getValueAt(l,1).toString());
+                afi.Modelo.setValueAt(afi.cedula0.getText(),l,2);
+                afi.cedula0.setText(afi.tabla.getValueAt(l,2).toString());
+                afi.fechaSalida0.setDateFormatString(afi.tabla.getValueAt(l,3).toString());
+                afi.fechaIngreso0.setDateFormatString(afi.tabla.getValueAt(l,4).toString());
+                afi.Modelo.setValueAt(afi.hpra0.getText(),l,5);
+                afi.hpra0.setText(afi.tabla.getValueAt(l,5).toString());
+                afi.Modelo.setValueAt( afi.idAfiliado0.getText(),l,6);
+                afi.idAfiliado0.setText(afi.tabla.getValueAt(l,6).toString());
+                afi1.Actualizar();
+
+                afi.nombre0.setText("");
+                afi.apellido0.setText("");
+                afi.cedula0.setText("");
+                afi.hpra0.setText("");
+                afi.idAfiliado0.setText("");
+                afi.fechaSalida0.setDate(null);
+                afi.fechaIngreso0.setDate(null);
 
 
 

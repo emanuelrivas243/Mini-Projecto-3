@@ -1,6 +1,7 @@
 package Modelo;
 
 import Vista.Afiliados;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 
@@ -28,9 +29,29 @@ public class Afiliados1 extends MouseAdapter {
         this.afi = afi;
 
     }
+      public boolean Bandera(JTable tabla, String dato,int c){
+        boolean Bandera = false;
+        for (int i = 0 ; i > tabla.getRowCount(); i++){
+            if(tabla.getValueAt(i,c).equals(dato)){
+                Bandera = true;
+            }
+        }
+        return Bandera;
+      }
 
+    public void registro2(JTable tabla, String dato,int c,String fechaIngreso, String fechaSalida, String hora, String nombre, String apellido, String cedula, String IdAfiliado){
+       if(!Bandera(tabla,dato,c)){
+           Object struct []= {fechaIngreso,fechaSalida,hora,nombre,apellido,cedula, IdAfiliado};afi.Modelo.addRow(struct);
+       }else{
+           JOptionPane.showMessageDialog(null, "Id  Existe");
+       }
+    }
     public void Agregar() {
+
+
+
         try {
+
             infoafi = new String[7];
             infoafi[0] = setNombre(afi.nombre0.getText());
             infoafi[1] = setApellido(afi.apellido0.getText());
