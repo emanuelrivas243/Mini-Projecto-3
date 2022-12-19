@@ -5,11 +5,13 @@ import Modelo.*;
 import Vista.*;
 
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class ManejadoraEventos  implements ActionListener, MouseListener, KeyListener {
+public class ManejadoraEventos  implements ActionListener, MouseListener, KeyListener, CaretListener {
     private Citas cit;
     private Principal view;
     private Afiliados afi;
@@ -45,6 +47,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
       this.afi.cedula0.addKeyListener(this);
       this.afi.hpra0.addKeyListener(this);
       this.afi.idAfiliado0.addKeyListener(this);
+      this.afi.buscar1.addCaretListener(this);
       this.consul= consul;
 
       //EVENTOS FRAME CONSLTORIOS
@@ -57,6 +60,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.consul.atras2.addActionListener(this);
         this.consul.nombreuno.addKeyListener(this);
         this.consul.horaDisponivilidaduno.addKeyListener(this);
+        this.consul.buscar3.addCaretListener(this);
 
         //EVENTOS FRAME MEDICOS ESPECIALISTAS
       this.med= med;
@@ -72,6 +76,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.med.cedulatres.addKeyListener(this);
         this.med.servicionMedicotres.addKeyListener(this);
         this.med.medicotres.addKeyListener(this);
+        this.med.buscar4.addCaretListener(this);
 
 
         //EVENTOS FRAME SERVICIOS
@@ -85,6 +90,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.serv.atras4.addActionListener(this);
         this.serv.nombreServicio.addKeyListener(this);
         this.serv.Idservicio.addKeyListener(this);
+        this.serv.buscar3.addCaretListener(this);
         //EVENTOS FRAME CITAS
         this.cit= cit;
         this.cit.actulizar5.addMouseListener(this);
@@ -105,6 +111,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.cit.medicoCinco.addKeyListener(this);
         this.cit.hpraCinco.addKeyListener(this);
         this.cit.consultaorioCinco.addKeyListener(this);
+
 
 
 
@@ -638,6 +645,22 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void caretUpdate(CaretEvent e) {
+        if(e.getSource().equals(afi.buscar1)) {
+            afi1.Buscar();
+        }
+        if(e.getSource().equals(med.buscar4)) {
+            med1.Buscar();
+        }
+        if(e.getSource().equals(serv.buscar3)) {
+            serv1.Buscar();
+        }
+        if(e.getSource().equals(consul.buscar3)) {
+            consul1.Buscar();
+        }
     }
 }
 

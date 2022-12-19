@@ -7,8 +7,8 @@ import java.awt.*;
 public class Servicios extends JFrame {
     public  JButton  agregar4, actulizar4, eliminar4,eliminar44 ,listar4,guardar4,atras4;
     public JPanel  crud4,pDatos4,ti;
-    private JLabel nombreServicio4,Idservicio4;
-    public JTextField nombreServicio,Idservicio;
+    private JLabel buscartres,nombreServicio4,Idservicio4;
+    public JTextField nombreServicio,Idservicio,buscar3;
 
     public DefaultTableModel Modelo;
     public JTable tabla;
@@ -19,10 +19,14 @@ public class Servicios extends JFrame {
         nombreServicio = new JTextField(12);
         Idservicio4 = new JLabel("Id del Servicio:");
         Idservicio = new JTextField(12);
+        buscartres = new JLabel("Buscar");
+        buscar3 = new JTextField(12);
         pDatos4.add(nombreServicio4);
         pDatos4.add(nombreServicio);
         pDatos4.add(Idservicio4);
         pDatos4.add(Idservicio);
+        pDatos4.add(buscartres);
+        pDatos4.add(buscar3);
         pDatos4.setBackground(Color.getHSBColor(178,57,100));
         add( pDatos4,BorderLayout.NORTH);
 

@@ -10,15 +10,16 @@ public class Citas  extends JFrame {
     public  JButton  agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55,afiliado,consultorio,especialista,servicios;
     public JPanel  crud5,pDatos5,ti,pb2;
     private JLabel nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
-    public JTextField nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
+    public JTextField   nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
     public JDateChooser fechaSalidaCinco,fechaIngresoCinco;
 
     public DefaultTableModel Modelo;
     public JTable tabla;
     public String [] columna ;
     public Citas()  {
+
         initGUI5();
-        pb2 = new JPanel(new GridLayout(1,1));
+        pb2 = new JPanel(new GridLayout(1,3));
         afiliado= new JButton("Afiliados");
         consultorio= new JButton("Consultorio");
         especialista= new JButton("Medicos");
@@ -47,6 +48,7 @@ public class Citas  extends JFrame {
         consultaorio5 = new JLabel("Consultorio o Laboratorio:");
         consultaorioCinco= new JTextField(12);
 
+
         pDatos5.add(nombre5);
         pDatos5.add(nombreCinco);
         pDatos5.add(apellido5);
@@ -65,6 +67,8 @@ public class Citas  extends JFrame {
         pDatos5.add(hpraCinco);
         pDatos5.add(consultaorio5);
         pDatos5.add(consultaorioCinco);
+
+
         pDatos5.add(  pb2);
 
 

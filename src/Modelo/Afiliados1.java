@@ -98,7 +98,20 @@ public class Afiliados1 extends MouseAdapter {
 
     }
 
-
+    public void Buscar() {
+        String dato= afi.buscar1.getText();
+        if(dato.isEmpty()){
+            afi.tabla.clearSelection();
+        }else{
+            for (int i = 0; i < afi.tabla.getRowCount(); i++) {
+               if(afi.tabla.getValueAt(i,2).equals(dato)){
+                  // afi.tabla.requestFocus();
+                   afi.tabla.changeSelection(i,2,false,false);
+                   afi.Modelo.isCellEditable(i,2);
+               }
+            }
+        }
+    }
 
 
 
@@ -180,5 +193,7 @@ public class Afiliados1 extends MouseAdapter {
                 ", afi=" + afi +
                 '}';
     }
+
+
 }
 

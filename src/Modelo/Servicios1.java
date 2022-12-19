@@ -89,4 +89,19 @@ public class Servicios1 {
                 ", IddServicio='" + IddServicio + '\'' +
                 '}';
     }
+
+    public void Buscar() {
+        String dato= serv.buscar3.getText();
+        if(dato.isEmpty()){
+            serv.tabla.clearSelection();
+        }else{
+            for (int i = 0; i < serv.tabla.getRowCount(); i++) {
+                if(serv.tabla.getValueAt(i,1).equals(dato)){
+                    // afi.tabla.requestFocus();
+                    serv.tabla.changeSelection(i,1,false,false);
+                    serv.Modelo.isCellEditable(i,2);
+                }
+            }
+        }
+    }
 }

@@ -10,8 +10,8 @@ public class Afiliados extends JFrame {
 
     public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
     public JPanel  crud1 ,pDatos ,t;
-    private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado;
-    public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0;
+    private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado,buscar;
+    public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0,buscar1;
 
 
 
@@ -41,6 +41,8 @@ public class Afiliados extends JFrame {
         hpra0 = new JTextField(12);
         idAfiliado = new JLabel("Id Afiliado:");
         idAfiliado0 = new JTextField(12);
+        buscar = new JLabel("Buscar:");
+        buscar1 = new JTextField(12);
         pDatos.add(nombre);
         pDatos.add(nombre0);
         pDatos.add(apellido);
@@ -55,6 +57,8 @@ public class Afiliados extends JFrame {
         pDatos.add(hpra0);
         pDatos.add(idAfiliado);
         pDatos.add(idAfiliado0);
+        pDatos.add(buscar);
+        pDatos.add(buscar1);
         pDatos.setBackground(Color.getHSBColor(178,57,100));
         add(pDatos,BorderLayout.NORTH);
 
@@ -69,6 +73,7 @@ public class Afiliados extends JFrame {
         columna[6]="Id Afiliado";
         Modelo = new DefaultTableModel(columna,0);
         tabla = new JTable(Modelo);
+
         JScrollPane scrollPane = new JScrollPane(tabla);
         scrollPane.setPreferredSize(new Dimension(1100, 500));
         t.add(scrollPane);

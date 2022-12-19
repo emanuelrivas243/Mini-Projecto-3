@@ -8,8 +8,8 @@ public class MedicosEspecialistas extends JFrame {
 
     public  JButton  agregar3, actulizar3, eliminar3, listar3,guardar3,atras3,eliminar33;
     public JPanel  crud3,pDatos3,ti;
-    private JLabel nombre3,apellido3,cedula3,servicionMedico3,medico3;
-    public JTextField nombretres,apellidotres,cedulatres,servicionMedicotres,medicotres;
+    private JLabel buscarcuatro,nombre3,apellido3,cedula3,servicionMedico3,medico3;
+    public JTextField buscar4, nombretres,apellidotres,cedulatres,servicionMedicotres,medicotres;
 
     public DefaultTableModel Modelo;
     public JTable tabla;
@@ -27,6 +27,8 @@ public class MedicosEspecialistas extends JFrame {
         servicionMedicotres = new JTextField(12);
         medico3 = new JLabel("ID Medico:");
         medicotres = new JTextField(12);
+        buscarcuatro = new JLabel("Buscar:");
+        buscar4 = new JTextField(12);
         pDatos3.add(nombre3);
         pDatos3.add(nombretres);
         pDatos3.add(apellido3);
@@ -37,6 +39,8 @@ public class MedicosEspecialistas extends JFrame {
         pDatos3.add(servicionMedicotres);
         pDatos3.add(medico3);
         pDatos3.add(medicotres);
+        pDatos3.add(buscarcuatro);
+        pDatos3.add(buscar4);
         pDatos3.setBackground(Color.getHSBColor(178,57,100));
         add( pDatos3,BorderLayout.NORTH);
 
@@ -86,5 +90,6 @@ public class MedicosEspecialistas extends JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(true);
     }
+
 
 }

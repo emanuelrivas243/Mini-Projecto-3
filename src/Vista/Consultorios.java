@@ -7,8 +7,9 @@ import java.awt.*;
 public class Consultorios extends JFrame {
     public  JButton  agregar2, actulizar2, eliminar2, eliminar22,listar2,guardar2,atras2;
     public JPanel  crud2,pDatos2,ti;
-    private JLabel nombre1,horaDisponivilidad;
-    public JTextField nombreuno,horaDisponivilidaduno;
+
+    private JLabel nombre1,horaDisponivilidad,buscartres;
+    public JTextField nombreuno,horaDisponivilidaduno,buscar3;
     public DefaultTableModel Modelo;
 
 
@@ -21,10 +22,14 @@ public class Consultorios extends JFrame {
         nombreuno = new JTextField(12);
         horaDisponivilidad = new JLabel("Hora de Disponibilidad:");
         horaDisponivilidaduno = new JTextField(12);
+        buscartres= new JLabel("Buscar");
+        buscar3 = new JTextField(12);
         pDatos2.add(nombre1);
         pDatos2.add(nombreuno);
         pDatos2.add(horaDisponivilidad);
         pDatos2.add(horaDisponivilidaduno);
+        pDatos2.add(buscartres);
+        pDatos2.add(buscar3);
         pDatos2.setBackground(Color.getHSBColor(178,57,100));
         add(pDatos2,BorderLayout.NORTH);
 

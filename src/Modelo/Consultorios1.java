@@ -87,4 +87,19 @@ public class Consultorios1 {
                 ", HoraDisponibilidad=" + HoraDisponibilidad +
                 '}';
     }
+
+    public void Buscar() {
+        String dato= consul.buscar3.getText();
+        if(dato.isEmpty()){
+            consul.tabla.clearSelection();
+        }else{
+            for (int i = 0; i < consul.tabla.getRowCount(); i++) {
+                if(consul.tabla.getValueAt(i,0).equals(dato)){
+                    // afi.tabla.requestFocus();
+                    consul.tabla.changeSelection(i,0,false,false);
+                    consul.Modelo.isCellEditable(i,0);
+                }
+            }
+        }
+    }
 }

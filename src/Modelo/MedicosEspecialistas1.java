@@ -133,4 +133,19 @@ public class MedicosEspecialistas1 {
                 ", IDMedico='" + IDMedico + '\'' +
                 '}';
     }
+
+    public void Buscar() {
+        String dato= med.buscar4.getText();
+        if(dato.isEmpty()){
+            med.tabla.clearSelection();
+        }else{
+            for (int i = 0; i < med.tabla.getRowCount(); i++) {
+                if(med.tabla.getValueAt(i,2).equals(dato)){
+                    // afi.tabla.requestFocus();
+                    med.tabla.changeSelection(i,2,false,false);
+                    med.Modelo.isCellEditable(i,2);
+                }
+            }
+        }
+    }
 }
