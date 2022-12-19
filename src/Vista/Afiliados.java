@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Afiliados extends JFrame {
 
-    public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1;
+    public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
     public JPanel  crud1 ,pDatos ,t;
     private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado;
     public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0;
@@ -20,7 +20,7 @@ public class Afiliados extends JFrame {
 
     public DefaultTableModel Modelo;
     public JTable tabla;
-    private  String [] columna ;
+    public String [] columna ;
 
 
 
@@ -88,10 +88,12 @@ public class Afiliados extends JFrame {
         listar1 = new JButton("Listar");
         guardar1 = new JButton("Guardar");
         atras1 = new JButton("Retroceder");
+        eliminar11=  new JButton("Eliminar Todo");
         crud1.add(atras1);
         crud1.add(agregar1);
         crud1.add(actulizar1);
         crud1.add(eliminar1);
+        crud1.add(eliminar11);
         crud1.add(listar1);
         crud1.add(guardar1);
         crud1.setBackground(Color.getHSBColor(178,57,100));

@@ -3,14 +3,19 @@ package Vista;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Citas  extends JFrame {
-    public  JButton  agregar5, actulizar5, eliminar5, listar5,guardar5,atras5;
-    public JPanel  crud5,pDatos5;
+    public  JButton  agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55;
+    public JPanel  crud5,pDatos5,ti;
     private JLabel nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
-    public JTextField nombreCinco,apellidoCinco,cedulaCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
-    public JDateChooser fechaSalidaCinco,fechaIngresoCinco,hpraCinco;
+    public JTextField nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
+    public JDateChooser fechaSalidaCinco,fechaIngresoCinco;
+
+    public DefaultTableModel Modelo;
+    public JTable tabla;
+    public String [] columna ;
     public Citas()  {
         initGUI5();
         pDatos5 = new JPanel(new GridLayout(5,2));
@@ -28,8 +33,8 @@ public class Citas  extends JFrame {
         fechaSalidaCinco = new JDateChooser("dd/MM/yyyy","#######",'_');
         fechaIngreso5 = new JLabel("Fecha de Ingreso:");
         fechaIngresoCinco = new JDateChooser("dd/MM/yyyy","#######",'_');
-        hpra5 = new JLabel("Hora:");
-        hpraCinco = new JDateChooser("HH:mm","#######",'_');
+        hpra5 = new JLabel("Hora de  ingreso:");
+        hpraCinco = new JTextField(12);
         consultaorio5 = new JLabel("Consultorio o Laboratorio:");
         consultaorioCinco= new JTextField(12);
         pDatos5.add(nombre5);
@@ -53,17 +58,40 @@ public class Citas  extends JFrame {
         pDatos5.setBackground(Color.getHSBColor(178,57,100));
         add( pDatos5,BorderLayout.NORTH);
 
+        ti = new JPanel();
+        String[] columna = new String[9];
+        columna[0]="Nombre del Afiliado";
+        columna[1]= "Apellido del Afiliado";
+        columna[2]=  "Cedula del Afiliado";
+        columna[3]="Servicio Medico";
+        columna[4]= "Nombre del Medico";
+        columna[5]="Fecha de Salida";
+        columna[6]="Fecha de Ingreso";
+        columna[7]="Hora de Ingreso";
+        columna[8]="Consultorio o Laboratorio";
+        Modelo = new DefaultTableModel(columna,0);
+        tabla = new JTable(Modelo);
+        JScrollPane scrollPane = new JScrollPane(tabla);
+        scrollPane.setPreferredSize(new Dimension(1100, 500));
+        ti.add(scrollPane);
+        tabla.setBackground(Color.getHSBColor(178,57,100));
+        ti.setBackground(Color.getHSBColor(178,57,100));
+        add(ti,BorderLayout.CENTER);
+
         crud5 = new JPanel();
         agregar5 = new JButton("Agregar");
         actulizar5 = new JButton("Actualizar");
         eliminar5 = new JButton("Eliminar");
+        eliminar55 = new JButton("Eliminar Todo");
         listar5 = new JButton("Listar");
         guardar5 = new JButton("Guardar");
         atras5 = new JButton("Retroceder");
+
         crud5.add(atras5);
         crud5.add(agregar5);
         crud5.add(actulizar5);
         crud5.add(eliminar5);
+        crud5.add(eliminar55);
         crud5.add(listar5);
         crud5.add(guardar5);
         crud5.setBackground(Color.getHSBColor(178,57,100));
