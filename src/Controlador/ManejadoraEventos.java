@@ -203,6 +203,39 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
             cit.setVisible(false);
         }
 
+        else if (e.getSource().equals(cit.afiliado)) {
+            ///view.setVisible(false);
+            afi.setVisible(true);
+            //consul.setVisible(false);
+            //med.setVisible(false);
+           // serv.setVisible(false);
+           // cit.setVisible(false);
+        }
+        else if (e.getSource().equals(cit.servicios)) {
+            ///view.setVisible(false);
+           // afi.setVisible(true);
+            //consul.setVisible(false);
+            //med.setVisible(false);
+             serv.setVisible(true);
+            // cit.setVisible(false);
+        }
+        else if (e.getSource().equals(cit.consultorio)) {
+            ///view.setVisible(false);
+            // afi.setVisible(true);
+            consul.setVisible(true);
+            //med.setVisible(false);
+            //serv.setVisible(true);
+            // cit.setVisible(false);
+        }
+        else if (e.getSource().equals(cit.especialista)) {
+            ///view.setVisible(false);
+            // afi.setVisible(true);
+            //consul.setVisible(true);
+            med.setVisible(true);
+            //serv.setVisible(true);
+            // cit.setVisible(false);
+        }
+
        else if (e.getSource().equals(afi.agregar1)){
 
 
