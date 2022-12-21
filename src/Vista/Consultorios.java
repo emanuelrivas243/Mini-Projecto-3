@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Consultorios extends JFrame {
-    public  JButton  agregar2, actulizar2, eliminar2, eliminar22,listar2,guardar2,atras2;
+    public  JButton  salir,agregar2, actulizar2, eliminar2, eliminar22,listar2,guardar2,atras2;
     public JPanel  crud2,pDatos2,ti;
 
     private JLabel nombre1,horaDisponivilidad,buscartres;
@@ -56,6 +56,8 @@ public class Consultorios extends JFrame {
         guardar2 = new JButton("Guardar");
         atras2 = new JButton("Retroceder");
         eliminar22 = new JButton("Eliminaar Todo");
+        salir= new JButton("Salir");
+        crud2.add(salir);
         crud2.add(atras2);
         crud2.add(agregar2);
         crud2.add(actulizar2);

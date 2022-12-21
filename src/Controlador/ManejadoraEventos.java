@@ -48,9 +48,9 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
       this.afi.hpra0.addKeyListener(this);
       this.afi.idAfiliado0.addKeyListener(this);
       this.afi.buscar1.addCaretListener(this);
-      this.consul= consul;
-
+      this.afi.salir.addActionListener(this);
       //EVENTOS FRAME CONSLTORIOS
+        this.consul= consul;
         this.consul.actulizar2.addMouseListener(this);
         this.consul.agregar2.addActionListener(this);
         this.consul.listar2.addActionListener(this);
@@ -61,7 +61,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.consul.nombreuno.addKeyListener(this);
         this.consul.horaDisponivilidaduno.addKeyListener(this);
         this.consul.buscar3.addCaretListener(this);
-
+        this.consul.salir.addActionListener(this);
         //EVENTOS FRAME MEDICOS ESPECIALISTAS
       this.med= med;
         this.med.actulizar3.addMouseListener(this);
@@ -77,8 +77,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.med.servicionMedicotres.addKeyListener(this);
         this.med.medicotres.addKeyListener(this);
         this.med.buscar4.addCaretListener(this);
-
-
+        this.med.salir.addActionListener(this);
         //EVENTOS FRAME SERVICIOS
       this.serv= serv;
         this.serv.actulizar4.addMouseListener(this);
@@ -91,6 +90,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.serv.nombreServicio.addKeyListener(this);
         this.serv.Idservicio.addKeyListener(this);
         this.serv.buscar3.addCaretListener(this);
+        this.serv.salir.addActionListener(this);
         //EVENTOS FRAME CITAS
         this.cit= cit;
         this.cit.actulizar5.addMouseListener(this);
@@ -111,9 +111,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.cit.medicoCinco.addKeyListener(this);
         this.cit.hpraCinco.addKeyListener(this);
         this.cit.consultaorioCinco.addKeyListener(this);
-
-
-
+        this.cit.salir.addActionListener(this);
 
         this.afi1= afi1;
         this.consul1=consul1;
@@ -132,7 +130,6 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
             med.setVisible(false);
             serv.setVisible(false);
             cit.setVisible(false);
-
         }
         if (e.getSource().equals(view.citas)) {
             view.setVisible(false);
@@ -211,58 +208,33 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         }
 
         else if (e.getSource().equals(cit.afiliado)) {
-            ///view.setVisible(false);
             afi.setVisible(true);
-            //consul.setVisible(false);
-            //med.setVisible(false);
-           // serv.setVisible(false);
-           // cit.setVisible(false);
         }
         else if (e.getSource().equals(cit.servicios)) {
-            ///view.setVisible(false);
-           // afi.setVisible(true);
-            //consul.setVisible(false);
-            //med.setVisible(false);
-             serv.setVisible(true);
-            // cit.setVisible(false);
+            serv.setVisible(true);
         }
         else if (e.getSource().equals(cit.consultorio)) {
-            ///view.setVisible(false);
-            // afi.setVisible(true);
             consul.setVisible(true);
-            //med.setVisible(false);
-            //serv.setVisible(true);
-            // cit.setVisible(false);
         }
         else if (e.getSource().equals(cit.especialista)) {
-            ///view.setVisible(false);
-            // afi.setVisible(true);
-            //consul.setVisible(true);
             med.setVisible(true);
-            //serv.setVisible(true);
-            // cit.setVisible(false);
         }
 
        else if (e.getSource().equals(afi.agregar1)){
-
-
-                try {
-                    if (afi.nombre0.getText().isEmpty() || afi.apellido0.getText().isEmpty() ||
+           try {
+               if (afi.nombre0.getText().isEmpty() || afi.apellido0.getText().isEmpty() ||
                             afi.cedula0.getText().isEmpty() || afi.idAfiliado0.getText().isEmpty()
                             || afi.fechaSalida0.getDate().toString().isEmpty() || afi.fechaIngreso0.getDate().toString().isEmpty()
                     ) {
+                        afi.Modelo.addRow(new Object[]{"",""});
                         JOptionPane.showMessageDialog(null, "llene los campus vacios");
                     } else {
-
                         afi1.Agregar();
                         JOptionPane.showMessageDialog(null, "revise los campos y luego oprima Actualizar para ingrezar nuevos datos");
                     }
                 } catch (Exception E) {
                     JOptionPane.showMessageDialog(null, "llene los campos de fecha de Ingreso y fecha de salida");
                 }
-
-
-
        }
 
        else if (e.getSource().equals(afi.eliminar1)){
@@ -271,11 +243,13 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
 
        else if (e.getSource().equals(afi.eliminar11)) {
             afi1.EliminarTodo();
+
        }
 
         else if (e.getSource().equals(consul.agregar2)){
             try{
                 if(consul.nombreuno.getText().isEmpty()||consul.horaDisponivilidaduno.getText().isEmpty()) {
+                    consul.Modelo.addRow(new Object[]{"",""});
                     JOptionPane.showMessageDialog(null, "llene los campus vacios");
                 } else{
                     consul1.Agregar();
@@ -283,7 +257,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
                 } }catch (Exception E){
 
             }
-            }
+        }
 
 
         else if (e.getSource().equals(consul.eliminar2)){
@@ -293,11 +267,14 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         else if (e.getSource().equals(consul.eliminar22)) {
             consul1.EliminarTodo();
         }
+
+
         //
         else if (e.getSource().equals(med.agregar3)){
             try{
                 if(med.nombretres.getText().isEmpty()|| med.apellidotres.getText().isEmpty()|| med.cedulatres.getText().isEmpty()||
                 med.servicionMedicotres.getText().isEmpty()|| med.medicotres.getText().isEmpty()) {
+                    med.Modelo.addRow(new Object[]{"",""});
                     JOptionPane.showMessageDialog(null, "llene los campus vacios");
                 } else{
                     med1.Agregar();
@@ -310,10 +287,31 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
 
         else if (e.getSource().equals(med.eliminar3)){
             med1.Eliminar();
+
         }
 
         else if (e.getSource().equals(med.eliminar33)) {
             med1.EliminarTodo();
+        }
+        else if(e.getSource().equals(med.guardar3)){
+
+
+            med1.Guardar();
+            //int fila = med.tabla.getSelectedRow();
+            try{int fila = med.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
+
+                    med.Modelo.removeRow(0);
+                }}catch (Exception E){
+                System.out.println();
+            }
+
+        }
+        if(e.getSource().equals(med.listar3)){
+
+            med1.Recuperar();
+
+
         }
 
     //////
@@ -323,8 +321,10 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
             try{
                 if(serv.nombreServicio.getText().isEmpty()||serv.Idservicio.getText().isEmpty()
                 ) {
+                    serv.Modelo.addRow(new Object[]{"",""});
                     JOptionPane.showMessageDialog(null, "llene los campus vacios");
                 } else{
+
                     serv1.Agregar();
                     JOptionPane.showMessageDialog(null, "revise los campos y luego oprima Actualizar para ingrezar nuevos datos");
                 } }catch (Exception E){
@@ -339,6 +339,113 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         else if (e.getSource().equals(serv.eliminar44)) {
             serv1.EliminarTodo();
         }
+        ////
+       else if(e.getSource().equals(afi.guardar1)){
+
+            //afi1.guardaTabla();
+            afi1.Guardar();
+            //int fila = consul.tabla.getSelectedRow();
+            try{int fila = afi.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
+
+                    afi.Modelo.removeRow(0);
+                }}catch (Exception E){
+                System.out.println();
+            }
+
+        }
+        if(e.getSource().equals(afi.listar1)){
+
+            afi1.Recuperar();
+
+
+        }
+
+        else if(e.getSource().equals(consul.guardar2)){
+
+            //afi1.guardaTabla();
+            consul1.Guardar();
+            try{int fila = consul.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
+
+                    consul.Modelo.removeRow(0);
+                }}catch (Exception E){
+                System.out.println();
+            }
+        }
+        if(e.getSource().equals(consul.listar2)){
+
+            consul1.Recuperar();
+
+
+        }
+        //
+        else if(e.getSource().equals(serv.guardar4)){
+
+            //afi1.guardaTabla();
+            serv1.Guardar();
+            //int fila = serv.tabla.getSelectedRow();
+            try{int fila = serv.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
+
+                    serv.Modelo.removeRow(0);
+                }}catch (Exception E){
+                System.out.println();
+            }
+        }
+        if(e.getSource().equals(serv.listar4)){
+
+            serv1.Recuperar();
+
+
+        }
+
+        if(e.getSource().equals(consul.listar2)){
+
+            consul.agregar2.setEnabled(false);
+            consul.guardar2.setEnabled(false);
+
+        }
+
+        if(e.getSource().equals(afi.listar1)){
+
+            afi.agregar1.setEnabled(false);
+            afi.guardar1.setEnabled(false);
+
+        }
+
+        if(e.getSource().equals(serv.listar4)){
+
+            serv.agregar4.setEnabled(false);
+            serv.guardar4.setEnabled(false);
+
+        }
+
+        if(e.getSource().equals(med.listar3)){
+
+            med.agregar3.setEnabled(false);
+            med.guardar3.setEnabled(false);
+
+        }
+
+
+
+        if (e.getSource().equals(afi.salir)) {
+            afi.dispose();
+        }
+        if (e.getSource().equals(consul.salir)) {
+            consul.dispose();
+        }
+        if (e.getSource().equals(cit.salir)) {
+            cit.dispose();
+        }
+        if (e.getSource().equals(serv.salir)) {
+            serv.dispose();
+        }
+        if (e.getSource().equals(med.salir)) {
+            med.dispose();
+        }
+
 
 }
 

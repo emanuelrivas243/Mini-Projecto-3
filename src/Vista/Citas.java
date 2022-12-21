@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Citas  extends JFrame {
-    public  JButton  agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55,afiliado,consultorio,especialista,servicios;
+    public  JButton salir, agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55,afiliado,consultorio,especialista,servicios;
     public JPanel  crud5,pDatos5,ti,pb2;
     private JLabel nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
     public JTextField   nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
@@ -103,7 +103,8 @@ public class Citas  extends JFrame {
         listar5 = new JButton("Listar");
         guardar5 = new JButton("Guardar");
         atras5 = new JButton("Retroceder");
-
+        salir = new JButton("Salir");
+        crud5.add(salir);
         crud5.add(atras5);
         crud5.add(agregar5);
         crud5.add(actulizar5);

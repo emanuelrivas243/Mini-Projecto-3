@@ -4,6 +4,11 @@ package Modelo;
 import Vista.MedicosEspecialistas;
 
 import javax.swing.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class MedicosEspecialistas1 {
 
@@ -60,11 +65,19 @@ public class MedicosEspecialistas1 {
     }
 
     public void EliminarTodo() {
+        String fileName = "src/ArchivosTexto/medicosespecialistas.txt";
+        try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
+                StandardOpenOption.TRUNCATE_EXISTING)) {
+            try{int fila = med.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
 
-        int fila = med.tabla.getRowCount();
-        for (int i = fila - 1; i > 0; i--) {
+                    med.Modelo.removeRow(0);
+                }}catch (Exception e){
+                JOptionPane.showMessageDialog(null, "se elimino por completo.");
+            }
 
-            med.Modelo.removeRow(i);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -77,6 +90,64 @@ public class MedicosEspecialistas1 {
 
     }
 
+    public void Guardar() {
+        try {
+
+            // File archivo;
+            FileWriter Guardar = new FileWriter("src/ArchivosTexto/medicosespecialistas.txt",true);
+            BufferedWriter bfw = new BufferedWriter(Guardar);
+            PrintWriter out= new PrintWriter(bfw);
+            for (int i = 0; i < med.Modelo.getRowCount(); i++) {
+                Guardar.write(med.Modelo.getValueAt(i, 0).toString()+";" + "\n");
+                Guardar.write(med.Modelo.getValueAt(i, 1).toString()+";" + "\n");
+
+                Guardar.write(med.Modelo.getValueAt(i, 2).toString()+";" + "\n");
+
+                Guardar.write(med.Modelo.getValueAt(i, 3).toString()+";" + "\n");
+
+                Guardar.write(med.Modelo.getValueAt(i, 4).toString()+";" + "\n");
+
+
+
+            }
+            Guardar.close();
+            JOptionPane.showMessageDialog(null, "Datos Guardados");
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+    }
+
+    public void Recuperar() {
+
+        String NombreEspecialista, ApellidoMedícooEspecialista, CedulaMedícooEspecialista, IddelServicio, IDMedico;
+
+        String auxiliar = "src/ArchivosTexto/medicosespecialistas.txt";
+
+
+        Scanner linea;
+        File doc = new File(auxiliar);
+
+        try {
+            linea = new Scanner(doc);
+            while (linea.hasNextLine()) {
+                NombreEspecialista = linea.nextLine();
+                ApellidoMedícooEspecialista = linea.nextLine();
+                CedulaMedícooEspecialista = linea.nextLine();
+                IddelServicio = linea.nextLine();
+                IDMedico= linea.nextLine();
+
+                med.Modelo.addRow(new Object[]{NombreEspecialista, ApellidoMedícooEspecialista, CedulaMedícooEspecialista, IddelServicio, IDMedico});
+                //afi.Modelo.addRow(new Object[]{"",""});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+    }
 
     public String getNombreEspecialista() {
         return NombreEspecialista;

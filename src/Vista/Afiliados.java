@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Afiliados extends JFrame {
 
-    public  JButton  agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
+    public  JButton  salir, agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
     public JPanel  crud1 ,pDatos ,t;
     private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado,buscar;
     public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0,buscar1;
@@ -71,7 +71,7 @@ public class Afiliados extends JFrame {
         columna[4]= "Fecha de Ingreso";
         columna[5]="Hora de Ingreso";
         columna[6]="Id Afiliado";
-        Modelo = new DefaultTableModel(columna,0);
+       Modelo = new DefaultTableModel(columna,0);
         tabla = new JTable(Modelo);
 
         JScrollPane scrollPane = new JScrollPane(tabla);
@@ -87,6 +87,7 @@ public class Afiliados extends JFrame {
 
 
         crud1 = new JPanel();
+        salir=  new JButton("Salir");
         agregar1 = new JButton("Agregar");
         actulizar1 = new JButton("Actualizar");
         eliminar1 = new JButton("Eliminar");
@@ -94,6 +95,7 @@ public class Afiliados extends JFrame {
         guardar1 = new JButton("Guardar");
         atras1 = new JButton("Retroceder");
         eliminar11=  new JButton("Eliminar Todo");
+        crud1.add(salir);
         crud1.add(atras1);
         crud1.add(agregar1);
         crud1.add(actulizar1);

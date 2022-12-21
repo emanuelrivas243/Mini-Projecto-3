@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Servicios extends JFrame {
-    public  JButton  agregar4, actulizar4, eliminar4,eliminar44 ,listar4,guardar4,atras4;
+    public  JButton  salir,agregar4, actulizar4, eliminar4,eliminar44 ,listar4,guardar4,atras4;
     public JPanel  crud4,pDatos4,ti;
     private JLabel buscartres,nombreServicio4,Idservicio4;
     public JTextField nombreServicio,Idservicio,buscar3;
@@ -53,6 +53,8 @@ public class Servicios extends JFrame {
         listar4 = new JButton("Listar");
         guardar4 = new JButton("Guardar");
         atras4 = new JButton("Retroceder");
+        salir = new JButton("Salir");
+        crud4.add(salir);
         crud4.add(atras4);
         crud4.add(agregar4);
         crud4.add(actulizar4);

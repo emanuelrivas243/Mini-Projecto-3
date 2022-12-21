@@ -3,9 +3,13 @@ package Modelo;
 import Vista.Afiliados;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
-public class Afiliados1 extends MouseAdapter {
+public class Afiliados1 /*extends MouseAdapter*/ {
 
     private String fechaIngreso;
     private String fechaSalida;
@@ -15,7 +19,7 @@ public class Afiliados1 extends MouseAdapter {
     private String cedula;
     private String IdAfiliado;
     private Afiliados afi;
-  private  String[] infoafi;
+    private String[] infoafi;
 
 
     public Afiliados1(String fechaIngreso, String fechaSalida, String hora, String nombre, String apellido, String cedula, String IdAfiliado, Afiliados afi) {
@@ -29,26 +33,8 @@ public class Afiliados1 extends MouseAdapter {
         this.afi = afi;
 
     }
-      public boolean Bandera(JTable tabla, String dato,int c){
-        boolean Bandera = false;
-        for (int i = 0 ; i > tabla.getRowCount(); i++){
-            if(tabla.getValueAt(i,c).equals(dato)){
-                Bandera = true;
-            }
-        }
-        return Bandera;
-      }
 
-    public void registro2(JTable tabla, String dato,int c,String fechaIngreso, String fechaSalida, String hora, String nombre, String apellido, String cedula, String IdAfiliado){
-       if(!Bandera(tabla,dato,c)){
-           Object struct []= {fechaIngreso,fechaSalida,hora,nombre,apellido,cedula, IdAfiliado};afi.Modelo.addRow(struct);
-       }else{
-           JOptionPane.showMessageDialog(null, "Id  Existe");
-       }
-    }
     public void Agregar() {
-
-
 
         try {
 
@@ -61,8 +47,27 @@ public class Afiliados1 extends MouseAdapter {
             infoafi[5] = setHora(afi.hpra0.getText());
             infoafi[6] = setIdAfiliado(afi.idAfiliado0.getText());
             afi.Modelo.addRow(infoafi);
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ingrese los datos,y editelos si es necesario,en los Campos llenados anteriormente.");
+
+        }
+
+    }
+
+    public void LimpiarTabla(){
+        try {
+
+            infoafi = new String[7];
+            infoafi[0] = setNombre("");
+            infoafi[1] = setApellido("");
+            infoafi[2] = setCedula("");
+            infoafi[3] = setFechaIngreso("");
+            infoafi[4] = setFechaSalida("");
+            infoafi[5] = setHora("");
+            infoafi[6] = setIdAfiliado("");
+            afi.Modelo.addRow(infoafi);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "tabla Limpia");
 
         }
 
@@ -70,49 +75,125 @@ public class Afiliados1 extends MouseAdapter {
 
 
     public void Eliminar() {
-        int fila = afi.tabla.getSelectedRow();
-        if (fila >= 0) {
-            afi.Modelo.removeRow(fila);
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecionarfilas");
 
-        }
+    int fila = afi.tabla.getSelectedRow();
+    if (fila >= 0) {
+        afi.Modelo.removeRow(fila);
+    } else {
+        JOptionPane.showMessageDialog(null, "Selecionarfilas");
 
     }
+
+}
+
+
+
 
     public void EliminarTodo() {
+        String fileName = "src/ArchivosTexto/afiliados.txt";
+try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
+                StandardOpenOption.TRUNCATE_EXISTING)) {
+    try{int fila = afi.tabla.getRowCount();
+        for (int i = 0; fila >0; i++) {
 
-        int fila = afi.tabla.getRowCount();
-        for (int i = fila - 1; i > 0; i--) {
-
-            afi.Modelo.removeRow(i);
-        }
+            afi.Modelo.removeRow(0);
+        }}catch (Exception e){
+        JOptionPane.showMessageDialog(null, "se elimino por completo.");
     }
 
-    public void  Actualizar(){
+} catch (IOException e) {
+e.printStackTrace();
+}
+    }
+
+    public void Actualizar() {
 
         int fila = afi.tabla.getRowCount();
-        for (int i = fila; i < afi.tabla.getRowCount(); i++) {
-            afi.tabla.setValueAt(infoafi[i],fila,i);
+        for (int i =fila; i < afi.tabla.getRowCount(); i++) {
+            afi.tabla.setValueAt(infoafi[i], fila, i);
+
         }
 
     }
 
     public void Buscar() {
-        String dato= afi.buscar1.getText();
-        if(dato.isEmpty()){
+        String dato = afi.buscar1.getText();
+        if (dato.isEmpty()) {
             afi.tabla.clearSelection();
-        }else{
+        } else {
             for (int i = 0; i < afi.tabla.getRowCount(); i++) {
-               if(afi.tabla.getValueAt(i,2).equals(dato)){
-                  // afi.tabla.requestFocus();
-                   afi.tabla.changeSelection(i,2,false,false);
-                   afi.Modelo.isCellEditable(i,2);
-               }
+
+                if (afi.tabla.getValueAt(i, 2).equals(dato)) {
+                    afi.tabla.changeSelection(i, 2, false, false);
+                    afi.Modelo.isCellEditable(i, 2);
+                }
             }
         }
     }
 
+
+    public void Guardar() {
+        try {
+
+           // File archivo;
+            FileWriter Guardar = new FileWriter("src/ArchivosTexto/afiliados.txt",true);
+            BufferedWriter bfw = new BufferedWriter(Guardar);
+            PrintWriter out= new PrintWriter(bfw);
+                for (int i = 0; i < afi.Modelo.getRowCount(); i++) {
+                    Guardar.write(afi.Modelo.getValueAt(i, 0).toString()+";" + "\n");
+                    Guardar.write(afi.Modelo.getValueAt(i, 1).toString()+";" + "\n");
+
+                    Guardar.write(afi.Modelo.getValueAt(i, 2).toString()+";" + "\n");
+
+                    Guardar.write(afi.Modelo.getValueAt(i, 3).toString()+";" + "\n");
+
+                    Guardar.write(afi.Modelo.getValueAt(i, 4).toString()+";" + "\n");
+
+                    Guardar.write(afi.Modelo.getValueAt(i, 5).toString()+";" + "\n");
+
+                    Guardar.write(afi.Modelo.getValueAt(i, 6).toString()+";" + "\n");
+
+
+                }
+                Guardar.close();
+                JOptionPane.showMessageDialog(null, "Datos Guardados");
+            }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+        }
+
+
+    public void Recuperar() {
+        String fechaIngreso, fechaSalida, hora, nombre, cedula, IdAfiliado, apellido;
+
+        String auxiliar = "src/ArchivosTexto/afiliados.txt";
+
+
+        Scanner linea;
+        File doc = new File(auxiliar);
+
+        try {
+            linea = new Scanner(doc);
+            while (linea.hasNextLine()) {
+                nombre = linea.nextLine();
+                apellido = linea.nextLine();
+                cedula = linea.nextLine();
+                fechaIngreso = linea.nextLine();
+                fechaSalida = linea.nextLine();
+                hora = linea.nextLine();
+                IdAfiliado = linea.nextLine();
+                afi.Modelo.addRow(new Object[]{nombre, apellido, cedula, fechaIngreso, fechaSalida, hora, IdAfiliado});
+                //afi.Modelo.addRow(new Object[]{"",""});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+    }
 
 
 

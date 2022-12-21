@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class MedicosEspecialistas extends JFrame {
 
-    public  JButton  agregar3, actulizar3, eliminar3, listar3,guardar3,atras3,eliminar33;
+    public  JButton  salir,agregar3, actulizar3, eliminar3, listar3,guardar3,atras3,eliminar33;
     public JPanel  crud3,pDatos3,ti;
     private JLabel buscarcuatro,nombre3,apellido3,cedula3,servicionMedico3,medico3;
     public JTextField buscar4, nombretres,apellidotres,cedulatres,servicionMedicotres,medicotres;
@@ -70,6 +70,8 @@ public class MedicosEspecialistas extends JFrame {
         guardar3 = new JButton("Guardar");
         atras3 = new JButton("Retroceder");
         eliminar33 = new JButton("Eliminar Todo");
+        salir= new JButton("Salir");
+        crud3.add(salir);
         crud3.add(atras3);
         crud3.add(agregar3);
         crud3.add(actulizar3);

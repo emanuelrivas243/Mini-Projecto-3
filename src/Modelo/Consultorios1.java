@@ -3,6 +3,11 @@ package Modelo;
 import Vista.Consultorios;
 
 import javax.swing.*;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class Consultorios1 {
     private String numeroConsultorio;
@@ -33,24 +38,34 @@ public class Consultorios1 {
 
 
     public void Eliminar() {
-        int fila = consul.tabla.getSelectedRow();
-        if (fila >= 0) {
-            consul.Modelo.removeRow(fila);
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecionarfilas");
+
+            int fila = consul.tabla.getSelectedRow();
+            if (fila >= 0) {
+                consul.Modelo.removeRow(fila);
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecionarfilas");
+
+            }
 
         }
 
-    }
+        public void EliminarTodo() {
+            String fileName = "src/ArchivosTexto/consultorios.txt";
+            try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
+                    StandardOpenOption.TRUNCATE_EXISTING)) {
+                try{int fila = consul.tabla.getRowCount();
+                    for (int i = 0; fila >0; i++) {
 
-    public void EliminarTodo() {
+                        consul.Modelo.removeRow(0);
+                    }}catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "se elimino por completo.");
+                }
 
-        int fila = consul.tabla.getRowCount();
-        for (int i = fila - 1; i > 0; i--) {
-
-            consul.Modelo.removeRow(i);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
+
 
     public void  Actualizar(){
 
@@ -58,6 +73,51 @@ public class Consultorios1 {
         for (int i = fila; i < consul.tabla.getRowCount(); i++) {
             consul.tabla.setValueAt(infoafi2[i],fila,i);
         }
+
+    }
+
+    public void Guardar() {
+        try {
+
+            // File archivo;
+            FileWriter Guardar = new FileWriter("src/ArchivosTexto/consultorios.txt",true);
+            BufferedWriter bfw = new BufferedWriter(Guardar);
+            PrintWriter out= new PrintWriter(bfw);
+            for (int i = 0; i < consul.Modelo.getRowCount(); i++) {
+                Guardar.write(consul.Modelo.getValueAt(i, 0).toString()+";" + "\n");
+                Guardar.write(consul.Modelo.getValueAt(i, 1).toString()+";" + "\n");
+            }
+            Guardar.close();
+            JOptionPane.showMessageDialog(null, "Datos Guardados");
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+    }
+
+    public void Recuperar() {
+        String numeroConsultorio,HoraDisponibilidad;
+
+        String auxiliar = "src/ArchivosTexto/consultorios.txt";
+
+
+        Scanner linea;
+        File doc = new File(auxiliar);
+
+        try {
+            linea = new Scanner(doc);
+            while (linea.hasNextLine()) {
+                numeroConsultorio = linea.nextLine();
+                HoraDisponibilidad = linea.nextLine();
+                consul.Modelo.addRow(new Object[]{numeroConsultorio,HoraDisponibilidad});
+                //afi.Modelo.addRow(new Object[]{"",""});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
 
     }
 
