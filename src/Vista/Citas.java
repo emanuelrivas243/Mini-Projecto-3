@@ -7,10 +7,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Citas  extends JFrame {
-    public  JButton salir, agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55,afiliado,consultorio,especialista,servicios;
+    public  JButton mostrar,recuperar,salir, agregar5, actulizar5, eliminar5, listar5,guardar5,atras5,eliminar55,afiliado,consultorio,especialista,servicios;
     public JPanel  crud5,pDatos5,ti,pb2;
-    private JLabel nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
-    public JTextField   nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
+    private JLabel bUscar,nombre5,apellido5,cedula5,servicionMedico5,medico5,fechaSalida5,fechaIngreso5,hpra5,consultaorio5;
+    public JTextField   buscar,nombreCinco,apellidoCinco,cedulaCinco,hpraCinco,servicionMedicoCinco,medicoCinco,consultaorioCinco;
     public JDateChooser fechaSalidaCinco,fechaIngresoCinco;
 
     public DefaultTableModel Modelo;
@@ -49,6 +49,7 @@ public class Citas  extends JFrame {
         consultaorioCinco= new JTextField(12);
 
 
+
         pDatos5.add(nombre5);
         pDatos5.add(nombreCinco);
         pDatos5.add(apellido5);
@@ -76,6 +77,7 @@ public class Citas  extends JFrame {
         add( pDatos5,BorderLayout.NORTH);
 
         ti = new JPanel();
+
         String[] columna = new String[9];
         columna[0]="Nombre del Afiliado";
         columna[1]= "Apellido del Afiliado";
@@ -96,6 +98,7 @@ public class Citas  extends JFrame {
         add(ti,BorderLayout.CENTER);
 
         crud5 = new JPanel();
+        mostrar = new JButton("Mostrar");
         agregar5 = new JButton("Agregar");
         actulizar5 = new JButton("Actualizar");
         eliminar5 = new JButton("Eliminar");
@@ -104,6 +107,11 @@ public class Citas  extends JFrame {
         guardar5 = new JButton("Guardar");
         atras5 = new JButton("Retroceder");
         salir = new JButton("Salir");
+        recuperar = new JButton("Recuperar");
+        bUscar = new JLabel("Buscar por Cedula");
+        buscar= new JTextField(8);
+
+
         crud5.add(salir);
         crud5.add(atras5);
         crud5.add(agregar5);
@@ -112,13 +120,17 @@ public class Citas  extends JFrame {
         crud5.add(eliminar55);
         crud5.add(listar5);
         crud5.add(guardar5);
+        crud5.add(recuperar);
+        crud5.add(mostrar);
+        crud5.add( bUscar);
+        crud5.add(buscar);
         crud5.setBackground(Color.getHSBColor(178,57,100));
         add(crud5, BorderLayout.SOUTH);
     }
 
     private void initGUI5() {
         this.setTitle("Citas");
-        this.setSize(1100,600);
+        this.setSize(1600,600);
         this.setVisible(false);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.getHSBColor(178,57,100));

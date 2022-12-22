@@ -5,9 +5,7 @@ import Vista.MedicosEspecialistas;
 
 import javax.swing.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.Scanner;
 
 public class MedicosEspecialistas1 {
@@ -121,7 +119,7 @@ public class MedicosEspecialistas1 {
 
     public void Recuperar() {
 
-        String NombreEspecialista, ApellidoMedícooEspecialista, CedulaMedícooEspecialista, IddelServicio, IDMedico;
+
 
         String auxiliar = "src/ArchivosTexto/medicosespecialistas.txt";
 
@@ -147,6 +145,68 @@ public class MedicosEspecialistas1 {
         }
 
 
+    }
+    public void Recuperar2() {
+
+
+
+        String auxiliar = "src/ArchivosTexto/medicosespecialistas.txt";
+
+        File doc = new File(auxiliar);
+        try {
+            BufferedReader bM = new BufferedReader(new FileReader(doc));
+            if(bM.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No Hay soporte");
+            }else  {
+                Scanner linea;
+                try {
+                    linea = new Scanner(doc);
+                    while (linea.hasNextLine()) {
+                        NombreEspecialista = linea.nextLine();
+                        ApellidoMedícooEspecialista = linea.nextLine();
+                        CedulaMedícooEspecialista = linea.nextLine();
+                        IddelServicio = linea.nextLine();
+                        IDMedico= linea.nextLine();
+
+                        med.Modelo.addRow(new Object[]{NombreEspecialista, ApellidoMedícooEspecialista, CedulaMedícooEspecialista, IddelServicio, IDMedico});
+                        //afi.Modelo.addRow(new Object[]{"",""});
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();}
+
+    }
+
+    public void HacerSoporte(){
+        String auxiliar = "src/ArchivosTexto/medicosespecialistas.txt";
+        File doc = new File(auxiliar);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(doc));
+            if(br.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No se pueden recuperar los datos porque no se han guardado previmente en medicosespecialistas.txt\n" +
+                        "Por favor ingrese los datos en los campos solicitados\n.Oprima agregar,de clic  sobre la fila,oprima actualizar  y finalmente oprima el boton Guardar");
+            }else  {
+                try {
+
+                    Path fuentecita = Paths.get("src/ArchivosTexto/medicosespecialistas.txt");
+                    Path destino = Paths.get("src/ArchivosTexto/copiamed.txt");
+
+                    Files.copy(fuentecita, destino, StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(null, "Datos Guardados correcamente en un punto de recuperacion");
+                } catch (IOException e) {
+                    System.out.println("Error");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNombreEspecialista() {

@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Consultorios extends JFrame {
-    public  JButton  salir,agregar2, actulizar2, eliminar2, eliminar22,listar2,guardar2,atras2;
+    public  JButton mostrar ,recuperar,salir,agregar2, actulizar2, eliminar2, eliminar22,listar2,guardar2,atras2;
     public JPanel  crud2,pDatos2,ti;
 
     private JLabel nombre1,horaDisponivilidad,buscartres;
@@ -22,7 +22,7 @@ public class Consultorios extends JFrame {
         nombreuno = new JTextField(12);
         horaDisponivilidad = new JLabel("Hora de Disponibilidad:");
         horaDisponivilidaduno = new JTextField(12);
-        buscartres= new JLabel("Buscar");
+        buscartres= new JLabel("Buscar por Numero de Consultorio:");
         buscar3 = new JTextField(12);
         pDatos2.add(nombre1);
         pDatos2.add(nombreuno);
@@ -57,6 +57,8 @@ public class Consultorios extends JFrame {
         atras2 = new JButton("Retroceder");
         eliminar22 = new JButton("Eliminaar Todo");
         salir= new JButton("Salir");
+        recuperar= new JButton("Recuperar");
+        mostrar= new JButton("Mostrar");
         crud2.add(salir);
         crud2.add(atras2);
         crud2.add(agregar2);
@@ -65,6 +67,8 @@ public class Consultorios extends JFrame {
         crud2.add(eliminar22);
         crud2.add(listar2);
         crud2.add(guardar2);
+        crud2.add(recuperar);
+        crud2.add(mostrar);
         crud2.setBackground(Color.getHSBColor(178,57,100));
         add(crud2, BorderLayout.SOUTH);
 

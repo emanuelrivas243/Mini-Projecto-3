@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class MedicosEspecialistas extends JFrame {
 
-    public  JButton  salir,agregar3, actulizar3, eliminar3, listar3,guardar3,atras3,eliminar33;
+    public  JButton mostrar, recuperar,salir,agregar3, actulizar3, eliminar3, listar3,guardar3,atras3,eliminar33;
     public JPanel  crud3,pDatos3,ti;
     private JLabel buscarcuatro,nombre3,apellido3,cedula3,servicionMedico3,medico3;
     public JTextField buscar4, nombretres,apellidotres,cedulatres,servicionMedicotres,medicotres;
@@ -27,7 +27,7 @@ public class MedicosEspecialistas extends JFrame {
         servicionMedicotres = new JTextField(12);
         medico3 = new JLabel("ID Medico:");
         medicotres = new JTextField(12);
-        buscarcuatro = new JLabel("Buscar:");
+        buscarcuatro = new JLabel("Buscar Por Cedula  del Medico:");
         buscar4 = new JTextField(12);
         pDatos3.add(nombre3);
         pDatos3.add(nombretres);
@@ -71,6 +71,8 @@ public class MedicosEspecialistas extends JFrame {
         atras3 = new JButton("Retroceder");
         eliminar33 = new JButton("Eliminar Todo");
         salir= new JButton("Salir");
+        recuperar= new JButton("Recuperar");
+        mostrar= new JButton("Mostrar");
         crud3.add(salir);
         crud3.add(atras3);
         crud3.add(agregar3);
@@ -79,6 +81,8 @@ public class MedicosEspecialistas extends JFrame {
         crud3.add(eliminar33);
         crud3.add(listar3);
         crud3.add(guardar3);
+        crud3.add(recuperar);
+        crud3.add(mostrar);
         crud3.setBackground(Color.getHSBColor(178,57,100));
         add(crud3, BorderLayout.SOUTH);
     }

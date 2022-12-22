@@ -4,6 +4,9 @@ package Modelo;
 import Vista.Citas;
 
 import javax.swing.*;
+import java.io.*;
+import java.nio.file.*;
+import java.util.Scanner;
 
 public class Citas1 {
 
@@ -40,7 +43,7 @@ public class Citas1 {
             infoafi1[1] =setApellidoAfiliado(cit.apellidoCinco.getText());
             infoafi1[2] = setCedulaAfiliado(cit.cedulaCinco.getText());
             infoafi1[3] = setServicioMedico(cit.servicionMedicoCinco.getText());
-            infoafi1[4] = setNombreMedico(cit.nombreCinco.getText());
+            infoafi1[4] = setNombreMedico(cit.medicoCinco.getText());
             infoafi1[5] = setFechaSalida(cit.fechaSalidaCinco.getDate().toString());
             infoafi1[6] = setFechaIngreso(cit.fechaIngresoCinco.getDate().toString());
             infoafi1[7] = setHora(cit.hpraCinco.getText());
@@ -55,9 +58,11 @@ public class Citas1 {
 
 
     public void Eliminar() {
+
         int fila = cit.tabla.getSelectedRow();
         if (fila >= 0) {
             cit.Modelo.removeRow(fila);
+            JOptionPane.showMessageDialog(null, "Se Eliminaron los datos de la tabla ");
         } else {
             JOptionPane.showMessageDialog(null, "Selecionarfilas");
 
@@ -66,13 +71,57 @@ public class Citas1 {
     }
 
     public void EliminarTodo() {
+        String fileName = "src/ArchivosTexto/citas.txt";
+        try (BufferedWriter bf = Files.newBufferedWriter(Path.of(fileName),
+                StandardOpenOption.TRUNCATE_EXISTING)) {
+            try{int fila = cit.tabla.getRowCount();
+                for (int i = 0; fila >0; i++) {
 
-        int fila = cit.tabla.getRowCount();
-        for (int i = fila - 1; i > 0; i--) {
+                    cit.Modelo.removeRow(0);
+                }}catch (Exception e){
+                JOptionPane.showMessageDialog(null, "se elimino por completo .");
+            }
 
-            cit.Modelo.removeRow(i);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    public void Guardar() {
+        try {
+
+            // File archivo;
+            FileWriter Guardar = new FileWriter("src/ArchivosTexto/citas.txt",true);
+            BufferedWriter bfw = new BufferedWriter(Guardar);
+            PrintWriter out= new PrintWriter(bfw);
+            for (int i = 0; i < cit.Modelo.getRowCount(); i++) {
+                Guardar.write(cit.Modelo.getValueAt(i, 0).toString()+";" + "\n");
+                Guardar.write(cit.Modelo.getValueAt(i, 1).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 2).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 3).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 4).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 5).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 6).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 7).toString()+";" + "\n");
+
+                Guardar.write(cit.Modelo.getValueAt(i, 8).toString()+";" + "\n");
+            }
+            Guardar.close();
+            JOptionPane.showMessageDialog(null, "Datos Guardados correcamente");
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+    }
+
+
 
     public void  Actualizar(){
 
@@ -82,6 +131,125 @@ public class Citas1 {
         }
 
     }
+
+    public void Recuperar() {
+
+        String nombreAfiliado, apellidoAfiliado, cedulaAfiliado,fechaIngreso ,servicioMedico, nombreMedico,  hora, consultorioLaboratorio,fechaSalida;
+
+        String auxiliar = "src/ArchivosTexto/citas.txt";
+
+
+
+        Scanner linea;
+        File doc = new File(auxiliar);
+
+        try {
+            linea = new Scanner(doc);
+            while (linea.hasNextLine()) {
+                nombreAfiliado = linea.nextLine();
+                apellidoAfiliado = linea.nextLine();
+                cedulaAfiliado = linea.nextLine();
+                servicioMedico = linea.nextLine();
+                nombreMedico = linea.nextLine();
+                fechaIngreso = linea.nextLine();
+                fechaSalida = linea.nextLine();
+                hora= linea.nextLine();
+                consultorioLaboratorio= linea.nextLine();
+                cit.Modelo.addRow(new Object[]{nombreAfiliado, apellidoAfiliado ,cedulaAfiliado, servicioMedico, nombreMedico, fechaSalida ,fechaIngreso,hora, consultorioLaboratorio});
+                //afi.Modelo.addRow(new Object[]{"",""});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+
+
+
+
+    }
+
+    public void Recuperar2() {
+
+        String nombreAfiliado, apellidoAfiliado, cedulaAfiliado,fechaIngreso ,servicioMedico, nombreMedico,  hora, consultorioLaboratorio,fechaSalida;
+
+        String auxiliar = "src/ArchivosTexto/copiacit.txt";
+
+            File doc = new File(auxiliar);
+            try {
+                BufferedReader bM = new BufferedReader(new FileReader(doc));
+                if(bM.readLine()==null){
+                    JOptionPane.showMessageDialog(null, "No Hay soporte");
+                }else  {
+                  Scanner linea;
+
+        try {
+            linea = new Scanner(doc);
+            while (linea.hasNextLine()) {
+                nombreAfiliado = linea.nextLine();
+                apellidoAfiliado = linea.nextLine();
+                cedulaAfiliado = linea.nextLine();
+                servicioMedico = linea.nextLine();
+                nombreMedico = linea.nextLine();
+                fechaIngreso = linea.nextLine();
+                fechaSalida = linea.nextLine();
+                hora= linea.nextLine();
+                consultorioLaboratorio= linea.nextLine();
+                cit.Modelo.addRow(new Object[]{nombreAfiliado, apellidoAfiliado ,cedulaAfiliado, servicioMedico, nombreMedico, fechaSalida ,fechaIngreso,hora, consultorioLaboratorio});
+                //afi.Modelo.addRow(new Object[]{"",""});
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No Hay soporte");
+        }
+
+            }
+            } catch (IOException e) {
+                e.printStackTrace();}
+
+    }
+
+    public void HacerSoporte(){
+        String auxiliar = "src/ArchivosTexto/citas.txt";
+        File doc = new File(auxiliar);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(doc));
+            if(br.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No se pueden recuperar los datos porque no se han guardado previmente en citas.txt\n" +
+                        "Por favor ingrese los datos en los campos solicitados\n.Oprima agregar,de clic  sobre la fila,oprima actualizar  y finalmente oprima el boton Guardar");
+            }else  {
+                try {
+
+                    Path fuentecita = Paths.get("src/ArchivosTexto/citas.txt");
+                    Path destino = Paths.get("src/ArchivosTexto/copiacit.txt");
+
+                    Files.copy(fuentecita, destino, StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(null, "Datos Guardados correcamente en un punto de recuperacion");
+                } catch (IOException e) {
+                    System.out.println("Error");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Buscar() {
+        String dato = cit.buscar.getText();
+        if (dato.isEmpty()) {
+            cit.tabla.clearSelection();
+        } else {
+            for (int i = 0; i < cit.tabla.getRowCount(); i++) {
+
+                if (cit.tabla.getValueAt(i, 2).equals(dato)) {
+                    cit.tabla.changeSelection(i, 2, false, false);
+                    cit.Modelo.isCellEditable(i, 2);
+                }
+            }
+        }
+    }
+
+
 
 
     public String getNombreAfiliado() {
@@ -179,4 +347,12 @@ public class Citas1 {
                 ", consultorioLaboratorio='" + consultorioLaboratorio + '\'' +
                 '}';
     }
-}
+
+
+
+
+        }
+
+
+
+

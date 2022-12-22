@@ -4,9 +4,7 @@ import Vista.Afiliados;
 
 import javax.swing.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.Scanner;
 
 public class Afiliados1 /*extends MouseAdapter*/ {
@@ -49,25 +47,6 @@ public class Afiliados1 /*extends MouseAdapter*/ {
             afi.Modelo.addRow(infoafi);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ingrese los datos,y editelos si es necesario,en los Campos llenados anteriormente.");
-
-        }
-
-    }
-
-    public void LimpiarTabla(){
-        try {
-
-            infoafi = new String[7];
-            infoafi[0] = setNombre("");
-            infoafi[1] = setApellido("");
-            infoafi[2] = setCedula("");
-            infoafi[3] = setFechaIngreso("");
-            infoafi[4] = setFechaSalida("");
-            infoafi[5] = setHora("");
-            infoafi[6] = setIdAfiliado("");
-            afi.Modelo.addRow(infoafi);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "tabla Limpia");
 
         }
 
@@ -166,7 +145,7 @@ e.printStackTrace();
 
 
     public void Recuperar() {
-        String fechaIngreso, fechaSalida, hora, nombre, cedula, IdAfiliado, apellido;
+
 
         String auxiliar = "src/ArchivosTexto/afiliados.txt";
 
@@ -194,6 +173,69 @@ e.printStackTrace();
 
 
     }
+    public void Recuperar2() {
+
+
+        String auxiliar = "src/ArchivosTexto/copiaafi.txt";
+
+        File doc = new File(auxiliar);
+        try {
+            BufferedReader bM = new BufferedReader(new FileReader(doc));
+            if(bM.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No Hay soporte");
+            }else  {
+                Scanner linea;
+                try {
+                    linea = new Scanner(doc);
+                    while (linea.hasNextLine()) {
+                        nombre = linea.nextLine();
+                        apellido = linea.nextLine();
+                        cedula = linea.nextLine();
+                        fechaIngreso = linea.nextLine();
+                        fechaSalida = linea.nextLine();
+                        hora = linea.nextLine();
+                        IdAfiliado = linea.nextLine();
+                        afi.Modelo.addRow(new Object[]{nombre, apellido, cedula, fechaIngreso, fechaSalida, hora, IdAfiliado});
+                        //afi.Modelo.addRow(new Object[]{"",""});
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();}
+
+    }
+
+    public void HacerSoporte(){
+        String auxiliar = "src/ArchivosTexto/afiliados.txt";
+        File doc = new File(auxiliar);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(doc));
+            if(br.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No se pueden recuperar los datos porque no se han guardado previmente en afiliados.txt\n" +
+                        "Por favor ingrese los datos en los campos solicitados\n.Oprima agregar,de clic  sobre la fila,oprima actualizar  y finalmente oprima el boton Guardar");
+            }else  {
+                try {
+
+                    Path fuentecita = Paths.get("src/ArchivosTexto/afiliados.txt");
+                    Path destino = Paths.get("src/ArchivosTexto/copiaafi.txt");
+
+                    Files.copy(fuentecita, destino, StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(null, "Datos Guardados correcamente en un punto de recuperacion");
+                } catch (IOException e) {
+                    System.out.println("Error");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

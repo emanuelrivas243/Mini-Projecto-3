@@ -4,9 +4,7 @@ import Vista.Consultorios;
 
 import javax.swing.*;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.util.Scanner;
 
 public class Consultorios1 {
@@ -97,7 +95,7 @@ public class Consultorios1 {
     }
 
     public void Recuperar() {
-        String numeroConsultorio,HoraDisponibilidad;
+
 
         String auxiliar = "src/ArchivosTexto/consultorios.txt";
 
@@ -119,6 +117,64 @@ public class Consultorios1 {
         }
 
 
+    }
+    public void Recuperar2() {
+
+
+
+        String auxiliar = "src/ArchivosTexto/copiaconsul.txt";
+
+        File doc = new File(auxiliar);
+        try {
+            BufferedReader bM = new BufferedReader(new FileReader(doc));
+            if(bM.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No Hay soporte");
+            }else  {
+                Scanner linea;
+                try {
+                    linea = new Scanner(doc);
+                    while (linea.hasNextLine()) {
+                        numeroConsultorio = linea.nextLine();
+                        HoraDisponibilidad = linea.nextLine();
+                        consul.Modelo.addRow(new Object[]{numeroConsultorio,HoraDisponibilidad});
+                        //afi.Modelo.addRow(new Object[]{"",""});
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();}
+
+    }
+
+    public void HacerSoporte(){
+        String auxiliar = "src/ArchivosTexto/consultorios.txt";
+        File doc = new File(auxiliar);
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(doc));
+            if(br.readLine()==null){
+                JOptionPane.showMessageDialog(null, "No se pueden recuperar los datos porque no se han guardado previmente en consultorios.txt\n" +
+                        "Por favor ingrese los datos en los campos solicitados\n.Oprima agregar,de clic  sobre la fila,oprima actualizar  y finalmente oprima el boton Guardar");
+            }else  {
+                try {
+
+                    Path fuentecita = Paths.get("src/ArchivosTexto/consultorios.txt");
+                    Path destino = Paths.get("src/ArchivosTexto/copiaconsul.txt");
+
+                    Files.copy(fuentecita, destino, StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(null, "Datos Guardados correcamente en un punto de recuperacion");
+                } catch (IOException e) {
+                    System.out.println("Error");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

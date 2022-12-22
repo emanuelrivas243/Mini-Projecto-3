@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Servicios extends JFrame {
-    public  JButton  salir,agregar4, actulizar4, eliminar4,eliminar44 ,listar4,guardar4,atras4;
+    public  JButton  mostrar,recuperar,salir,agregar4, actulizar4, eliminar4,eliminar44 ,listar4,guardar4,atras4;
     public JPanel  crud4,pDatos4,ti;
     private JLabel buscartres,nombreServicio4,Idservicio4;
     public JTextField nombreServicio,Idservicio,buscar3;
@@ -19,7 +19,7 @@ public class Servicios extends JFrame {
         nombreServicio = new JTextField(12);
         Idservicio4 = new JLabel("Id del Servicio:");
         Idservicio = new JTextField(12);
-        buscartres = new JLabel("Buscar");
+        buscartres = new JLabel("Buscar por Id del Servicio:");
         buscar3 = new JTextField(12);
         pDatos4.add(nombreServicio4);
         pDatos4.add(nombreServicio);
@@ -54,6 +54,8 @@ public class Servicios extends JFrame {
         guardar4 = new JButton("Guardar");
         atras4 = new JButton("Retroceder");
         salir = new JButton("Salir");
+        recuperar = new JButton("Recuperar");
+        mostrar = new JButton("Mostrar");
         crud4.add(salir);
         crud4.add(atras4);
         crud4.add(agregar4);
@@ -62,6 +64,8 @@ public class Servicios extends JFrame {
         crud4.add(eliminar44);
         crud4.add(listar4);
         crud4.add(guardar4);
+        crud4.add(recuperar);
+        crud4.add(mostrar);
         crud4.setBackground(Color.getHSBColor(178,57,100));
         add(crud4, BorderLayout.SOUTH);
     }

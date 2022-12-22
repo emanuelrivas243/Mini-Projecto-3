@@ -8,9 +8,9 @@ import java.awt.*;
 
 public class Afiliados extends JFrame {
 
-    public  JButton  salir, agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
+    public  JButton mostrar, recuperar,salir, agregar1, actulizar1, eliminar1, listar1,guardar1,atras1,eliminar11;
     public JPanel  crud1 ,pDatos ,t;
-    private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado,buscar;
+    private JLabel nombre,apellido,cedula,fechaSalida,fechaIngreso,hpra,idAfiliado,buscarM;
     public JTextField nombre0,apellido0,cedula0,idAfiliado0,hpra0,buscar1;
 
 
@@ -41,8 +41,7 @@ public class Afiliados extends JFrame {
         hpra0 = new JTextField(12);
         idAfiliado = new JLabel("Id Afiliado:");
         idAfiliado0 = new JTextField(12);
-        buscar = new JLabel("Buscar:");
-        buscar1 = new JTextField(12);
+
         pDatos.add(nombre);
         pDatos.add(nombre0);
         pDatos.add(apellido);
@@ -57,12 +56,16 @@ public class Afiliados extends JFrame {
         pDatos.add(hpra0);
         pDatos.add(idAfiliado);
         pDatos.add(idAfiliado0);
-        pDatos.add(buscar);
-        pDatos.add(buscar1);
+
+
         pDatos.setBackground(Color.getHSBColor(178,57,100));
         add(pDatos,BorderLayout.NORTH);
 
         t = new JPanel();
+        buscarM= new JLabel("Buscar por Cedula:");
+        buscar1= new JTextField(12);
+        t.add(buscarM);
+        t.add(buscar1);
         String[] columna = new String[7];
         columna[0]="Nombre del Afiliado";
         columna[1]= "Apellido del Afiliado";
@@ -95,6 +98,8 @@ public class Afiliados extends JFrame {
         guardar1 = new JButton("Guardar");
         atras1 = new JButton("Retroceder");
         eliminar11=  new JButton("Eliminar Todo");
+        recuperar=  new JButton("Recuperar");
+        mostrar=  new JButton("Mostrar");
         crud1.add(salir);
         crud1.add(atras1);
         crud1.add(agregar1);
@@ -103,6 +108,8 @@ public class Afiliados extends JFrame {
         crud1.add(eliminar11);
         crud1.add(listar1);
         crud1.add(guardar1);
+        crud1.add(recuperar);
+        crud1.add(mostrar);
         crud1.setBackground(Color.getHSBColor(178,57,100));
         add(crud1, BorderLayout.SOUTH);
     }
