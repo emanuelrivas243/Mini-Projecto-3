@@ -51,6 +51,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
       this.afi.salir.addActionListener(this);
       this.afi.mostrar.addActionListener(this);
       this.afi.recuperar.addActionListener(this);
+      this.afi.tabla.addMouseListener(this);
       //ESCCHA FRAME CONSLTORIOS
         this.consul= consul;
         this.consul.actulizar2.addMouseListener(this);
@@ -66,6 +67,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.consul.salir.addActionListener(this);
         this.consul.mostrar.addActionListener(this);
         this.consul.recuperar.addActionListener(this);
+        this.consul.tabla.addMouseListener(this);
         //ESCCHA FRAME MEDICOS ESPECIALISTAS
       this.med= med;
         this.med.actulizar3.addMouseListener(this);
@@ -84,6 +86,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.med.salir.addActionListener(this);
         this.med.mostrar.addActionListener(this);
         this.med.recuperar.addActionListener(this);
+        this.med.tabla.addMouseListener(this);
         //ESCUCHA FRAME SERVICIOS
       this.serv= serv;
         this.serv.actulizar4.addMouseListener(this);
@@ -99,6 +102,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.serv.salir.addActionListener(this);
         this.serv.mostrar.addActionListener(this);
         this.serv.recuperar.addActionListener(this);
+        this.serv.tabla.addMouseListener(this);
         //ESCUCHAS FRAME CITAS
         this.cit= cit;
         this.cit.actulizar5.addMouseListener(this);
@@ -123,6 +127,8 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         this.cit.buscar.addCaretListener(this);
         this.cit.recuperar.addActionListener(this);
         this.cit.mostrar.addActionListener(this);
+
+
 
         this.afi1= afi1;
         this.consul1=consul1;
@@ -218,11 +224,12 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
             cit.setVisible(false);
         }
 
-        else if (e.getSource().equals(cit.afiliado)) {
+        if (e.getSource().equals(cit.afiliado)) {
             afi.setVisible(true);
         }
         else if (e.getSource().equals(cit.servicios)) {
             serv.setVisible(true);
+
         }
         else if (e.getSource().equals(cit.consultorio)) {
             consul.setVisible(true);
@@ -230,6 +237,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         else if (e.getSource().equals(cit.especialista)) {
             med.setVisible(true);
         }
+
     ///////EVENTOS CRUD AFILIADOS  A EXEPCION DE ACTUALIZAR
        else if (e.getSource().equals(afi.agregar1)){
            try {
@@ -727,6 +735,49 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
     @Override
     public void mousePressed(MouseEvent e) {
 
+           if( afi.tabla.equals(e.getSource())) {
+
+               Point point = e.getPoint();
+               int row = afi.tabla.rowAtPoint(point);
+               if (e.getClickCount() == 1) {
+                   cit.nombreCinco.setText(afi.tabla.getValueAt(afi.tabla.getSelectedRow(), 0).toString());
+                   cit.apellidoCinco.setText(afi.tabla.getValueAt(afi.tabla.getSelectedRow(), 1).toString());
+                   cit.cedulaCinco.setText(afi.tabla.getValueAt(afi.tabla.getSelectedRow(), 2).toString());
+               }
+           }
+
+        if( med.tabla.equals(e.getSource())) {
+
+            Point point = e.getPoint();
+            int row = med.tabla.rowAtPoint(point);
+            if (e.getClickCount() == 1) {
+                cit.medicoCinco.setText(med.tabla.getValueAt(med.tabla.getSelectedRow(), 0).toString());
+
+            }
+        }
+        if( serv.tabla.equals(e.getSource())) {
+
+            Point point = e.getPoint();
+            int row = serv.tabla.rowAtPoint(point);
+            if (e.getClickCount() == 1) {
+                cit.servicionMedicoCinco.setText(serv.tabla.getValueAt(serv.tabla.getSelectedRow(), 0).toString());
+
+            }
+        }
+
+        if( consul.tabla.equals(e.getSource())) {
+
+            Point point = e.getPoint();
+            int row = consul.tabla.rowAtPoint(point);
+            if (e.getClickCount() == 1) {
+                cit.consultaorioCinco.setText(consul.tabla.getValueAt(consul.tabla.getSelectedRow(), 0).toString());
+                cit.hpraCinco.setText(consul.tabla.getValueAt(consul.tabla.getSelectedRow(), 1).toString());
+
+            }
+        }
+
+
+
     }
 
     @Override
@@ -1003,6 +1054,7 @@ public class ManejadoraEventos  implements ActionListener, MouseListener, KeyLis
         if(e.getSource().equals(afi.buscar1)) {
             afi1.Buscar();
         }
+
         if(e.getSource().equals(med.buscar4)) {
             med1.Buscar();
         }
